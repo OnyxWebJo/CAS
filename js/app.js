@@ -325,6 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
     statElements.forEach(el => {
       const target = parseInt(el.getAttribute('data-target'), 10);
       if (isNaN(target)) return;
+      const isRaw = el.getAttribute('data-raw') === 'true' || target === 1989;
       const duration = 1800;
       const startTime = performance.now();
 
@@ -333,11 +334,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const progress = Math.min(elapsed / duration, 1);
         const easeOutQuad = 1 - (1 - progress) * (1 - progress);
         const currentVal = Math.floor(easeOutQuad * target);
-        el.textContent = currentVal.toLocaleString();
+        
+        el.textContent = isRaw ? currentVal.toString() : currentVal.toLocaleString('en-US');
+        
         if (progress < 1) {
           requestAnimationFrame(updateNumber);
         } else {
-          el.textContent = target.toLocaleString();
+          el.textContent = isRaw ? target.toString() : target.toLocaleString('en-US');
         }
       }
       requestAnimationFrame(updateNumber);
@@ -354,6 +357,47 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { threshold: 0.3 });
     observer.observe(statsSection);
+  }
+
+  // 8.5 MOBILE NAVIGATION DRAWER
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  const mobileDrawerClose = document.getElementById('mobileDrawerClose');
+
+  function openMobileDrawer() {
+    if (mobileDrawer) {
+      mobileDrawer.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeMobileDrawer() {
+    if (mobileDrawer) {
+      mobileDrawer.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', openMobileDrawer);
+  }
+
+  if (mobileDrawerClose) {
+    mobileDrawerClose.addEventListener('click', closeMobileDrawer);
+  }
+
+  if (mobileDrawer) {
+    mobileDrawer.addEventListener('click', (e) => {
+      if (e.target === mobileDrawer) {
+        closeMobileDrawer();
+      }
+    });
+
+    mobileDrawer.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        closeMobileDrawer();
+      });
+    });
   }
 
   // 9. CONSULTATION MODAL

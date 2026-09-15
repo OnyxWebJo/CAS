@@ -1657,6 +1657,119 @@ button {
 }
 
 /* ==========================================================================
+   MOBILE NAVIGATION DRAWER
+   ========================================================================== */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 3000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-drawer.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-drawer-inner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 85%;
+  max-width: 360px;
+  height: 100%;
+  background: var(--bg-tertiary);
+  border-left: 1px solid var(--border-gold);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.8);
+  overflow-y: auto;
+}
+
+[dir="rtl"] .mobile-drawer-inner {
+  right: auto;
+  left: 0;
+  border-left: none;
+  border-right: 1px solid var(--border-gold);
+  transform: translateX(-100%);
+  box-shadow: 8px 0 32px rgba(0, 0, 0, 0.8);
+}
+
+.mobile-drawer.open .mobile-drawer-inner {
+  transform: translateX(0);
+}
+
+.mobile-drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: var(--space-6);
+}
+
+.mobile-close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.mobile-close-btn:hover {
+  background: var(--gold-subtle);
+  color: var(--gold-light);
+}
+
+.mobile-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.mobile-nav-link {
+  display: block;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.mobile-nav-link:hover {
+  background: rgba(197, 160, 89, 0.12);
+  color: var(--gold-light);
+  transform: translateX(4px);
+}
+
+[dir="rtl"] .mobile-nav-link:hover {
+  transform: translateX(-4px);
+}
+
+.mobile-drawer-foot {
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ==========================================================================
    RESPONSIVE QUERIES
    ========================================================================== */
 @media (max-width: 1024px) {
@@ -1679,16 +1792,118 @@ button {
 }
 
 @media (max-width: 768px) {
-  .nav-menu {
-    display: none;
+  :root {
+    --header-height: 68px;
+  }
+
+  /* Header */
+  .nav-menu, .header-desktop-cta {
+    display: none !important;
   }
 
   .mobile-toggle {
     display: flex;
   }
 
-  .pillars-grid, .solutions-grid, .testimonials-grid, .pipeline-grid, .difference-flow-grid, .contact-details-grid {
+  .header-main {
+    height: 64px;
+  }
+
+  .header-main.scrolled {
+    height: 60px;
+  }
+
+  .brand-emblem {
+    width: 36px;
+    height: 36px;
+  }
+
+  .brand-emblem svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .brand-title {
+    font-size: 1.1rem;
+  }
+
+  .brand-sub {
+    font-size: 0.58rem;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    min-height: 100dvh;
+    padding-top: 64px;
+    padding-bottom: 120px;
+    align-items: flex-start;
+  }
+
+  .hero-content {
+    padding: var(--space-6) var(--space-4) var(--space-8) var(--space-4);
+  }
+
+  .hero-headline {
+    font-size: clamp(1.75rem, 7.5vw, 2.4rem);
+    line-height: 1.2;
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-scene-container {
+    min-height: 260px;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    width: 100%;
+    gap: var(--space-3);
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+    padding: 13px 20px;
+  }
+
+  /* Hero HUD */
+  .hero-hud {
+    bottom: 10px;
+    width: calc(100% - 1.25rem);
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+  }
+
+  .timeline-steps {
+    display: none;
+  }
+
+  .hud-top {
+    margin-bottom: 4px;
+  }
+
+  .hud-live-tag {
+    font-size: 0.65rem;
+  }
+
+  .timeline-track-wrap {
+    height: 3px;
+    margin-bottom: 0;
+  }
+
+  /* Grids & Cards */
+  .pillars-grid, 
+  .solutions-grid, 
+  .testimonials-grid, 
+  .pipeline-grid, 
+  .difference-flow-grid, 
+  .contact-details-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-4);
   }
 
   .solution-card-featured {
@@ -1697,19 +1912,104 @@ button {
 
   .stats-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-3);
   }
 
-  .hero-hud {
-    padding: var(--space-3) var(--space-4);
-    bottom: var(--space-4);
-    width: calc(100% - 1.5rem);
+  .stat-card {
+    padding: var(--space-5);
   }
 
-  .timeline-steps {
-    display: none;
+  .stat-number {
+    font-size: 2.2rem;
   }
 
-  .hero-scene-container {
-    min-height: 280px;
+  .glass-card, 
+  .pillar-card, 
+  .solution-card, 
+  .pipeline-card, 
+  .diff-step-card, 
+  .testimonial-card,
+  .sector-card {
+    padding: var(--space-6);
+  }
+
+  /* Sectors */
+  .sector-tabs {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .sector-tab-btn {
+    width: 100%;
+    padding: 10px 16px;
+    text-align: center;
+  }
+
+  .sector-card {
+    gap: var(--space-6);
+  }
+
+  .sector-info h3 {
+    font-size: 1.6rem;
+  }
+
+  .sector-info p {
+    font-size: 0.92rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .sector-visual {
+    min-height: 180px;
+    padding: var(--space-6);
+  }
+
+  .visual-metric {
+    font-size: 2.6rem;
+  }
+
+  /* Heritage */
+  .heritage-year {
+    font-size: 4.5rem;
+  }
+
+  .heritage-title {
+    font-size: 1.85rem;
+  }
+
+  .heritage-text {
+    font-size: 0.95rem;
+  }
+
+  /* CTA Banner */
+  .cta-banner-title {
+    font-size: 1.85rem;
+  }
+
+  .cta-banner-desc {
+    font-size: 0.95rem;
+  }
+
+  /* Footer */
+  .footer-top {
+    gap: var(--space-8);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-2);
+  }
+
+  /* Modal */
+  .modal-dialog {
+    padding: var(--space-6);
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-title {
+    font-size: 1.35rem;
   }
 }
+
