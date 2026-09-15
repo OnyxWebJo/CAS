@@ -1764,6 +1764,17 @@ button {
   transform: translateX(-4px);
 }
 
+.mobile-lang-wrap {
+  margin-bottom: var(--space-6);
+}
+
+.mobile-drawer-lang-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 12px;
+  font-size: var(--text-sm);
+}
+
 .mobile-drawer-foot {
   padding-top: var(--space-6);
   border-top: 1px solid var(--border-subtle);
@@ -1773,6 +1784,18 @@ button {
    RESPONSIVE QUERIES
    ========================================================================== */
 @media (max-width: 1024px) {
+  /* Hide desktop navigation, lang button, and CTA on tablet and mobile */
+  .nav-menu, 
+  .header-desktop-lang, 
+  .header-desktop-cta {
+    display: none !important;
+  }
+
+  /* Show Burger Menu Toggle Button on Tablet & Mobile */
+  .mobile-toggle {
+    display: flex !important;
+  }
+
   .trust-grid, .sector-card, .footer-top {
     grid-template-columns: 1fr;
     gap: var(--space-8);
@@ -1794,15 +1817,6 @@ button {
 @media (max-width: 768px) {
   :root {
     --header-height: 68px;
-  }
-
-  /* Header */
-  .nav-menu, .header-desktop-cta {
-    display: none !important;
-  }
-
-  .mobile-toggle {
-    display: flex;
   }
 
   .header-main {

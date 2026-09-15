@@ -76,10 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Language button text update
-    const langBtnText = document.getElementById('langBtnText');
-    if (langBtnText) {
-      langBtnText.textContent = lang === 'en' ? 'العربية' : 'English';
-    }
+    document.querySelectorAll('.lang-btn-text').forEach(el => {
+      el.textContent = lang === 'en' ? 'العربية' : 'English';
+    });
 
     // Update timeline step labels
     timelineSteps.forEach((step, idx) => {
@@ -96,14 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFAQ(lang);
   }
 
-  // Language Switch Button Listener
-  const langToggleBtn = document.getElementById('langToggleBtn');
-  if (langToggleBtn) {
-    langToggleBtn.addEventListener('click', () => {
+  // Language Switch Button Listeners (Desktop & Mobile Drawer)
+  document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
       const nextLang = currentLang === 'en' ? 'ar' : 'en';
       setLanguage(nextLang);
     });
-  }
+  });
 
   // 3. RENDER SOLUTIONS DYNAMICALLY
   function renderSolutions(lang) {

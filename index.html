@@ -133,22 +133,22 @@
 
         <!-- Actions -->
         <div class="header-actions">
-          <!-- Language Switcher -->
-          <button class="lang-btn" id="langToggleBtn" aria-label="Switch Language">
+          <!-- Desktop Language Switcher -->
+          <button class="lang-btn lang-toggle-btn header-desktop-lang" aria-label="Switch Language">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10"/>
               <line x1="2" y1="12" x2="22" y2="12"/>
               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
             </svg>
-            <span id="langBtnText">العربية</span>
+            <span class="lang-btn-text">العربية</span>
           </button>
 
-          <!-- Primary CTA Button -->
+          <!-- Desktop Primary CTA Button -->
           <button class="btn btn-primary open-consultation-btn header-desktop-cta">
             <span data-i18n="nav.cta">Request a Consultation</span>
           </button>
 
-          <!-- Mobile Hamburger Toggle -->
+          <!-- Mobile / Tablet Hamburger Toggle Button -->
           <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Open navigation menu">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -161,33 +161,48 @@
     </div>
   </header>
 
-  <!-- Mobile Navigation Drawer -->
+  <!-- Mobile & Tablet Navigation Drawer -->
   <div class="mobile-drawer" id="mobileDrawer">
     <div class="mobile-drawer-inner">
-      <div class="mobile-drawer-head">
-        <div class="brand-logo">
-          <div class="brand-emblem">
-            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+      <div>
+        <div class="mobile-drawer-head">
+          <div class="brand-logo">
+            <div class="brand-emblem">
+              <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+            </div>
+            <div class="brand-text">
+              <span class="brand-title">CAS</span>
+              <span class="brand-sub" data-i18n="nav.brandSub">Central Alarm Station</span>
+            </div>
           </div>
-          <div class="brand-text">
-            <span class="brand-title">CAS</span>
-            <span class="brand-sub" data-i18n="nav.brandSub">Central Alarm Station</span>
-          </div>
+          <button class="mobile-close-btn" id="mobileDrawerClose" aria-label="Close menu">✕</button>
         </div>
-        <button class="mobile-close-btn" id="mobileDrawerClose" aria-label="Close menu">✕</button>
+
+        <!-- Language Switcher Inside Drawer -->
+        <div class="mobile-lang-wrap">
+          <button class="lang-btn lang-toggle-btn mobile-drawer-lang-btn" aria-label="Switch Language">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            <span class="lang-btn-text">العربية</span>
+          </button>
+        </div>
+
+        <ul class="mobile-nav-list">
+          <li><a href="#hero" class="mobile-nav-link" data-i18n="nav.home">Home</a></li>
+          <li><a href="#trust" class="mobile-nav-link" data-i18n="nav.about">About Us</a></li>
+          <li><a href="#solutions" class="mobile-nav-link" data-i18n="nav.solutions">Solutions</a></li>
+          <li><a href="#howItWorks" class="mobile-nav-link" data-i18n="nav.howItWorks">How It Works</a></li>
+          <li><a href="#sectors" class="mobile-nav-link" data-i18n="sectors.eyebrow">Sectors</a></li>
+          <li><a href="#faq" class="mobile-nav-link" data-i18n="nav.faq">FAQ</a></li>
+          <li><a href="#contact" class="mobile-nav-link" data-i18n="nav.contact">Contact</a></li>
+        </ul>
       </div>
 
-      <ul class="mobile-nav-list">
-        <li><a href="#hero" class="mobile-nav-link" data-i18n="nav.home">Home</a></li>
-        <li><a href="#trust" class="mobile-nav-link" data-i18n="nav.about">About Us</a></li>
-        <li><a href="#solutions" class="mobile-nav-link" data-i18n="nav.solutions">Solutions</a></li>
-        <li><a href="#howItWorks" class="mobile-nav-link" data-i18n="nav.howItWorks">How It Works</a></li>
-        <li><a href="#sectors" class="mobile-nav-link" data-i18n="sectors.eyebrow">Sectors</a></li>
-        <li><a href="#faq" class="mobile-nav-link" data-i18n="nav.faq">FAQ</a></li>
-        <li><a href="#contact" class="mobile-nav-link" data-i18n="nav.contact">Contact</a></li>
-      </ul>
-
       <div class="mobile-drawer-foot">
+        <!-- Request a Consultation Inside Burger Menu -->
         <button class="btn btn-primary open-consultation-btn" style="width: 100%; margin-bottom: var(--space-4);">
           <span data-i18n="nav.cta">Request a Consultation</span>
         </button>
